@@ -1,0 +1,43 @@
+<h1>用户列表</h1>
+
+<div class="span12">
+	<div class="product">
+<%= link_to("新建用户",new_user_path, :class => "btn btn-mini btn-primary pull-right") %>
+</div>
+
+<table class="table">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>姓名</td>
+			<td>邮件</td>
+		    <td>角色</td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @users.each do|user| %>
+		<tr>
+			<td> # </td>
+			<td> <%= link_to(user.name, user_path(user))%></td>
+			<td> <%= user.email %> </td>
+			<td> 
+				<%  if user.usertype == 'A' %>
+				       管理员 
+				<% elsif user.usertype == 'P'%>
+				       产品经理
+				<% else %>
+				   投资顾问
+				<%end%>
+			</td>
+			<td> <%= link_to("编辑", edit_user_path(user), :class => "btn btn-mini")%>
+				<%= link_to("删除", user_path(user), :class => "btn btn-mini", :method=>:delete,:confirm=>"确定要删除？")%>
+			</td>
+		</tr>
+
+		<%end%>
+	</tbody>
+</table>
+<div>
+
+

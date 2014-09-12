@@ -5,4 +5,57 @@
 <%= link_to '返回', products_path %>
 </div>
 <h2> <%= @product.name %> </h2>
-<p> <%= @product.description %> </p> </div>
+<p> <%= @product.description %> </p>
+
+<% if @product.matches %>
+   <% @product.matches.each do |match| %>
+   <p>已匹配的需求：<%= Requirement.find_by(id:match.requirement_id).name%> </p>
+    <%end%>
+ <%end%>
+ </div>
+
+ <% if cookies[:user_type]=='P'%>
+  <div class='match'>
+	<input class="btn btn-large btn-primary" name="commit" onclick=chooseProduct() type="submit" value="添加匹配关系" />
+     <br>
+     <br>
+     <div id="matchreq" style="display:none">
+        <%= form_for(:match,url:"/creatematchfromProduct") do |f| %>
+        需求列表：<%= f.select :requirement_id, Requirement.all.collect{|requirement|[requirement.name,requirement.id]}, :prompt=>"请选择" %>
+                
+           <input id="match_product_id" name="match[product_id]" type="text"  style="display:none" value=<%=@product.id%>>
+        <br>
+        <br>
+        <%=f.submit "创建", class:"btn btn-large btn-primary" %>
+        <% end %>
+        <br>
+     </div>    
+   </div>
+
+   <div class='deletematch'>
+	<input class="btn btn-large btn-primary" name="commit" onclick=chooseRequirement() type="submit" value="删除匹配关系" />
+     <br>
+     <br>
+     <div id="unmatchreq" style="display:none">
+        <%= form_for(:match,url:"/deletematchfromProduct") do |f| %>
+        已匹配的需求列表：<%= f.select :id, @product.matches.collect{|match|[Requirement.find(match.requirement_id).name,match.id] }, :prompt=>"请选择" %>  
+         <input id="match_product_id" name="match[product_id]" type="text"  style="display:none" value=<%=@product.id%>>    
+        <br>
+        <br>
+        <%=f.submit "删除", class:"btn btn-large btn-primary" %>
+        <% end %>
+        <br>
+     </div>    
+   </div>
+<%end%>
+<script>
+function chooseProduct()
+{
+   document.getElementById("matchreq").style.display="block";
+}
+function chooseRequirement()
+{
+   document.getElementById("unmatchreq").style.display="block";
+}
+
+</script>

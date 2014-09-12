@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :products
+  has_many :requirements
 	before_create :create_remember_token
 	has_secure_password
 	before_save {self.email = email.downcase}

@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 		if user&&user.authenticate(params[:session][:password])
 			sign_in user
 			if user.usertype =="A"
-				redirect_to user
+				redirect_to users_path
 			elsif user.usertype == "S"
 				redirect_to requirements_path
 			else user.usertype == "P"
@@ -22,6 +22,6 @@ class SessionsController < ApplicationController
 
 	def destroy
 		sign_out
-		redirect_to root_path
+		redirect_to signin_path
 	end
 end

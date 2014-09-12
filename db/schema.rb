@@ -11,21 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909014543) do
+ActiveRecord::Schema.define(version: 20140910072835) do
+
+  create_table "matches", force: true do |t|
+    t.integer  "requirement_id"
+    t.integer  "product_id"
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "products", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "products", ["user_id", "created_at"], name: "index_products_on_user_id_and_created_at", using: :btree
 
   create_table "requirements", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "requirements", ["user_id", "created_at"], name: "index_requirements_on_user_id_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -35,6 +49,7 @@ ActiveRecord::Schema.define(version: 20140909014543) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
+    t.integer  "monthly_flag"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

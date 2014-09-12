@@ -1,10 +1,12 @@
 class ProductsController < ApplicationController
+	before_action :signed_in_as_product_manager
 	def new
 		@product=Product.new
 	end
 
 	def create
-		@product=Product.new(product_params)
+		@product = current_user.products.build(product_params)
+		#@product=Product.new(product_params)
 		if @product.save
 			redirect_to products_path
 		else
@@ -23,7 +25,8 @@ class ProductsController < ApplicationController
 	end
 
 	def index
-		@products = Product.all
+		#@products = Product.all
+		@products=current_user.products
 
 		respond_to do |format|
 			format.html

@@ -1,0 +1,27 @@
+<h1>所有需求</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>名称</td>
+			<td>描述</td>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @requirements.each do|requirement| %>
+		<tr>
+			<td> # </td>
+			<td> <%= link_to(requirement.name, requirement_path(requirement))%></td>
+			<td> <%= requirement.description %> </td>
+			</td>
+		</tr>
+
+		<%end%>
+	</tbody>
+</table>
+<div>
+
+
+

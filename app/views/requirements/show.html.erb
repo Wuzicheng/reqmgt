@@ -1,0 +1,70 @@
+
+<divclass="span12">
+<% if cookies[:user_type]=='S'%>
+<div class="group">
+<%= link_to("编辑", edit_requirement_path(@requirement) , :class => "btn btn-mini btn-primarypull-right")%> 
+<%= link_to '返回', requirements_path %>
+</div>
+<% end %>
+
+
+<h2> <%= @requirement.name %> </h2>
+<p> <%= @requirement.description %> </p> 
+<% if @requirement.matches %>
+   <% @requirement.matches.each do |match| %>
+   <p>已匹配的产品：<%= Product.find_by(id:match.product_id).name%> </p>
+    <%end%>
+    <%end%>
+
+
+<% if cookies[:user_type]=='P'%>
+
+  <div class='match'>
+	<input class="btn btn-large btn-primary" name="commit" onclick=chooseProduct() type="submit" value="添加匹配关系" />
+     <br>
+     <br>
+     <div id="matchreq" style="display:none">
+        <%= form_for(:match,url:"/creatematchfromRequirement") do |f| %>
+        产品列表：<%= f.select :product_id, @products.collect{|product|[product.name,product.id]}, :prompt=>"请选择" %>
+                
+           <input id="match_requirement_id" name="match[requirement_id]" type="text"  style="display:none" value=<%=@requirement.id%>>
+        <br>
+        <br>
+        <%=f.submit "创建", class:"btn btn-large btn-primary" %>
+        <% end %>
+        <br>
+     </div>    
+   </div>
+
+   <div class='deletematch'>
+  <input class="btn btn-large btn-primary" name="commit" onclick=chooseRequirement() type="submit" value="删除匹配关系" />
+     <br>
+     <br>
+     <div id="unmatchreq" style="display:none">
+        <%= form_for(:match,url:"/deletematchfromRequirement") do |f| %>
+        已匹配的需求列表：<%= f.select :id, @requirement.matches.collect{|match|[Product.find(match.product_id).name,match.id] }, :prompt=>"请选择" %>  
+        <input id="match_requirement_id" name="match[requirement_id]" type="text"  style="display:none" value=<%=@requirement.id%>>   
+        <br>
+        <br>
+        <%=f.submit "删除", class:"btn btn-large btn-primary" %>
+        <% end %>
+        <br>
+     </div>    
+   </div>
+<%end%>
+
+<script>
+function chooseProduct()
+{
+   document.getElementById("matchreq").style.display="block";
+}
+function chooseRequirement()
+{
+   document.getElementById("unmatchreq").style.display="block";
+}
+</script>
+
+
+
+
+
