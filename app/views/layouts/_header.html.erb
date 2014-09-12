@@ -1,12 +1,13 @@
-<header class="navbar navbar-fixed-top navbar-inverse bs-docs-nav">
+<header>
 <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <%= link_to "嘉实财富", '#', id: "logo" %>
-           <% if signed_in? %>
+           
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <% if signed_in? %>
                  <% if cookies[:user_type] =='P' %>
-                   <ul class="nav navbar-nav">
+                   <ul class="nav navbar-nav" id="menu">
                    <li id="product" onclick=getFocus1()><a href="/products">我的产品</a></li>
                    <li id="allrequirements" onclick=getFocus2()><a href="/allrequirements">所有需求</a></li>
                    </ul>

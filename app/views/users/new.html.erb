@@ -1,0 +1,27 @@
+<h1> 新建用户 </h1>
+
+<div class='row'>
+	<div class='span6 offset3'>
+		<%= form_for(:user,url:users_path) do |f| %>
+        <div>
+		<%=f.label :姓名 %>
+		<%=f.text_field :name%>
+
+		<%=f.label :邮件%>
+		<%=f.text_field :email%>
+        </div>
+        <div>
+		<%=f.label :密码%>
+		<%=f.password_field :password%>
+
+		<%=f.label :确认密码%>
+		<%=f.password_field :password_confirmation%>
+        </div>
+        <div>
+		<%=f.label :角色%>
+		<%=f.select :usertype, [["产品经理", 'P'],["投资顾问","S"],["管理员","A"]] ,:prompt=>"请选择用户类型"%>
+        </div>
+		<%=f.submit "创建", class:"btn btn-large btn-primary" %>
+		<%end%>
+	</div>
+</div>

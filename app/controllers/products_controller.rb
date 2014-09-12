@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-	before_action :signed_in_as_product_manager
+	before_action :signed_in_as_product_manager, :except =>[:show]
 	def new
 		@product=Product.new
 	end

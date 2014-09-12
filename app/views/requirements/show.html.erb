@@ -12,7 +12,7 @@
 <p> <%= @requirement.description %> </p> 
 <% if @requirement.matches %>
    <% @requirement.matches.each do |match| %>
-   <p>已匹配的产品：<%= Product.find_by(id:match.product_id).name%> </p>
+   <p>已匹配的产品：<%=link_to Product.find_by(id:match.product_id).name, product_path(Product.find(match.product_id))%> </p>
     <%end%>
     <%end%>
 

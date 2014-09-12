@@ -1,11 +1,19 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.navbar-inner {
+  background-color: #3366CC;
+  
+  padding-bottom: 8px;
+}
+#menu{
+  color:#000000;
+}
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
+  font-size: 24px;
+  color: #000033;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;

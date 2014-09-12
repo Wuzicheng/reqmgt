@@ -1,1 +1,9 @@
-<%=@user.name %>,<%= @user.email %>
+
+<divclass="span12">
+<div class="group">
+<%= link_to("编辑", edit_user_path(@user) , :class => "btn btn-mini btn-primarypull-right")%> 
+<%= link_to '返回', users_path %>
+</div>
+<h2> <%= @user.name %> </h2>
+<p> <%= @user.email %> </p>
+
