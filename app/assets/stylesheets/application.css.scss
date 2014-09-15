@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 .navbar-inner {
-  background-color: #3366CC;
+  background-color: #3399FF;
   
   padding-bottom: 8px;
 }
@@ -21,8 +21,13 @@
 }
 
 #logo:hover {
-  color: #fff;
+  color: #FF0000;
   text-decoration: none;
+}
+
+#error, #notice
+{
+  color:#FF0000
 }
 
  .form-signin {

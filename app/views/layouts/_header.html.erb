@@ -6,15 +6,21 @@
            
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <% if signed_in? %>
-                 <% if cookies[:user_type] =='P' %>
-                   <ul class="nav navbar-nav" id="menu">
-                   <li id="product" onclick=getFocus1()><a href="/products">我的产品</a></li>
-                   <li id="allrequirements" onclick=getFocus2()><a href="/allrequirements">所有需求</a></li>
-                   </ul>
-                <%end%>
+                  <% if cookies[:user_type] =='P' %>
+                    <ul class="nav navbar-nav" id="menu">
+                    <li id="product" ><a href="/products">我的产品</a></li>
+                    <li id="allrequirements"><a href="/allrequirements">所有需求</a></li>
+                    </ul>
+                  <%end%>
+                   <% if cookies[:user_type] =='S' %>
+                    <ul class="nav navbar-nav" id="menu">
+                    <li id="requirement" ><a href="/requirements">我的需求</a></li>
+                    <li id="allproducts"><a href="/allproducts">所有产品</a></li>
+                    </ul>
+                  <%end%>
              <ul class="nav navbar-nav navbar-right">
               <li>
-                  <%=link_to cookies[:name], signin_path%>
+                  <%=link_to cookies[:name], user_path(@current_user)%>
               </li>
               <li>
                 <%=link_to "注销", signout_path, method:"delete"%>
@@ -25,16 +31,5 @@
        </div>
      </div>
    </div>
-   <script>
-   function getFocus1()
-   {
-   document.getElementById("product").className="active";
-   document.getElementById("allrequirements").className="";
-   }
-   function getFocus2()
-   {
-   document.getElementById("allrequirements").className="active";
-    document.getElementById("product").className="";
-  }
-   </script>
+ 
 </header>

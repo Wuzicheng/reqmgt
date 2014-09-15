@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/allrequirements', to: 'requirements#allrequirements', via: 'get'
+  match '/allproducts', to: 'products#allproducts', via: 'get'
   match '/creatematchfromRequirement',  to: 'matches#createfromRequirement',   via: 'post'
   match '/deletematchfromRequirement',  to: 'matches#deletefromRequirement',   via: 'post'
   match '/creatematchfromProduct',  to: 'matches#createfromProduct',   via: 'post'
   match '/deletematchfromProduct',  to: 'matches#deletefromProduct',   via: 'post'
+  match '/addcomment',  to: 'matches#addcomment',   via: 'patch'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -31,9 +31,18 @@ class MatchesController < ApplicationController
 		redirect_to product_path(match_params[:product_id])
     end
 
+    def addcomment
+        @match = Match.find(match_params[:id])
+        if @match.update(match_params)
+        	redirect_to requirement_path(match_params[:requirement_id])
+        else
+			#TBD ERROR
+		end
+	end
+
 
 	private
        def match_params
-       	params.require(:match).permit(:id, :product_id,:requirement_id)
+       	params.require(:match).permit(:id, :product_id,:requirement_id,:comments)
        end
 end

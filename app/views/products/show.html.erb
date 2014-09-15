@@ -1,9 +1,11 @@
 
 <divclass="span12">
+ <% if cookies[:user_type]=='P'%>
 <div class="group">
 <%= link_to("编辑", edit_product_path(@product) , :class => "btn btn-mini btn-primarypull-right")%> 
 <%= link_to '返回', products_path %>
 </div>
+<%end%>
 <h2> <%= @product.name %> </h2>
 <p> <%= @product.description %> </p>
 

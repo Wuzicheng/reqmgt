@@ -32,6 +32,11 @@ class RequirementsController < ApplicationController
 
 	def show
 		@requirement=Requirement.find(params[:id])
+		puts current_user.usertype
+		 if current_user.usertype == 'S' && current_user.id!= @requirement.user_id then
+		 redirect_to signin_url, notice: "你没有权限访问该页面"
+		end
+
 		@products=current_user.products
 		@match=Match.new
 	end
@@ -56,6 +61,9 @@ class RequirementsController < ApplicationController
 
 	def edit
 		@requirement=Requirement.find(params[:id])
+		 if current_user.usertype == 'S' && current_user.id!= @requirement.user_id 	
+		 redirect_to signin_url, notice: "你没有权限访问该页面"
+		end
 	end
 
 	private
