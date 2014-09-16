@@ -1,14 +1,21 @@
 <h1> 新建产品 </h1>
+ <% if @product.errors.any? %>
+    <div id="error_explanation">
+    	 <% @product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+        <% end %>
+    </div>
 
 <div class='row'>
 	<div class='span6 offset3'>
 		<%= form_for(:product,url:products_path) do |f| %>
 
 		<%=f.label :名称 %>
-		<%=f.text_field :name%>
+		<%=f.text_field :name,class:"form-control"%>
 
 		<%=f.label :描述%>
-		<%=f.text_field :description%>
+		<%=f.text_field :description,class:"form-control"%>
 
 		<%=f.submit "创建", class:"btn btn-large btn-primary" %>
 		<%end%>

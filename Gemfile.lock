@@ -131,6 +131,7 @@ DEPENDENCIES
   bcrypt-ruby
   bootstrap-sass
   coffee-rails (~> 4.0.0)
+  execjs
   jbuilder (~> 2.0)
   jquery-rails
   mysql2

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   match '/deletematchfromProduct',  to: 'matches#deletefromProduct',   via: 'post'
   match '/addcomment',  to: 'matches#addcomment',   via: 'patch'
 
+  root 'sessions#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

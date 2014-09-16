@@ -21,21 +21,21 @@
    
     <%= form_for(match, url:"/addcomment") do |f| %>
     <div>
-
-   <%= f.radio_button :comments, "1"%>特别匹配  
-   <%= f.radio_button :comments, "2"%>非常匹配  
+   <%= f.radio_button :comments, "1",:disabled=>"disabled"%>特别匹配  
+   <%= f.radio_button :comments, "2",:disabled=>"disabled"%>非常匹配  
    </div>
    <div>
-   <%= f.radio_button :comments,"3"%>匹配  
-   <%= f.radio_button :comments,"4"%>还可以 
+   <%= f.radio_button :comments,"3",:disabled=>"disabled"%>匹配  
+   <%= f.radio_button :comments,"4",:disabled=>"disabled"%>还可以 
    <input id="match_id" name="match[id]" type="text"  style="display:none" value=<%=match.id%>>
     <input id="match_requirement_id" name="match[requirement_id]" type="text"  style="display:none" value=<%=@requirement.id%>>
    </div>
-   <% end %>
+   
    <div >
    <input class="btn btn-large btn-primary" name="addcomment" style="display:none" type="submit"  value="提交" />
  </div>
    </div>
+   <% end %>
    <br>
 
     <%end%>
@@ -91,10 +91,18 @@ function chooseRequirement()
 function addcomment()
 {
    var comments = new Array();
+   var radiobutton = new Array();
+    radiobutton=document.getElementsByName("match[comments]");
+    for(k=0;k<radiobutton.length;k++)
+      {radiobutton[k].disabled = false};
    comments = document.getElementsByName("addcomment");
     for(i=0;i<comments.length; i++)
-      {comments[i].style.display="block";}
+      {comments[i].style.display="block";};
+
+    
 }
+
+
 </script>
 
 
